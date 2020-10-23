@@ -1,9 +1,7 @@
 
-# import csv as commaz
-
 class App:
     def __init__(self):
-        print("Select an option::\n1. New File\n2. Read File\n3. File-to-CSV\n\n*********EXPERIMENTAL******\n4. hshr1\n4a. Decrypt hshr1(might be or might not be possible at this time)\n********\n\n5. Create List\n6. Add to List\n7. Read List")
+        print("Select an option::\n1. New File\n2. Read File\n3. File-to-CSV\n\n*********EXPERIMENTAL*********\n4. hshr1\n**********\n\n5. Create List\n6. Add to List\n7. Read List")
         print("**type the method as you see it above**\n")
         user_select = input("<USER_SELECT>...")
 
@@ -14,15 +12,22 @@ class App:
         if user_select == 'Read File':
             file_to_read = input('Specify the name of the file you want to read?')
             self.read_file(file_to_read)
-        # CSV to be added (**maybe have the method look in list files and convert to csv(title,descr,[...,points,..n.])
 
+        if user_select == "LD":
+            self.list_dir('/list_files')
+            self.list_dir('/txt_files')
+
+        # CSV to be added (**maybe have the method look in list files and convert to csv(title,descr,[...,points,..n.])
+        if user_select == 'File-to-CSV':
+            self.create_csv('csv_files')
+
+
+        # method that returns a unique value each time
         if user_select == "hshr1":
             filename = input("file name>>")
             msg = input("Message>>")
             self.hshr1(filename, msg)
-        if user_select == "Decryp hshr1":
-            filename = input("file name>>")
-            self.dh(filename)
+        
 
         if user_select == 'Create List':
             list_to_create = input('Specify the name of the file for the list?')
@@ -54,10 +59,43 @@ class App:
             cntnt = f.read()
             f.close()
             print(cntnt)
+
     # file to csv
+    # FOR F2CSV::
+    # ....- dotXLXS ->csv
+    def create_csv(self,dirname):
+        import csv as commaz
+
+        # inserted
+        title = input("Title 'Column'>>")
+        desc = input("Description 'Column'>>")
+        authr = input("Author 'Column'>>")
+        contact = input("Contact info(pick what's best) 'Column'>>")
+
+        fslct = input("\nname of file>>")
+        with open(dirname+"/"+fslct+".csv", 'w', newline='') as csvf:
+            seesvee = commaz.writer(csvf, delimiter=' ', quotechar=',', quoting=commaz.QUOTE_ALL)
+            seesvee.writerow(['Title',f'{title}'])
+            seesvee.writerow(['Description',f'{desc}'])
+            seesvee.writerow(['Author',f'{authr}'])
+            seesvee.writerow(['Contact',f'{contact}'])
+            csvf.close()
+        
 
 
-    #hshr1
+
+    # list specified directory within project directory
+    def list_dir(self,dirname):
+        import os as oh
+        p = './'+str(dirname)
+        findir = oh.listdir(p)
+        for f in findir:
+            print(dirname+"\n"+f+"\n")
+    
+        
+        
+
+    #hshr1 --returns unique 9bit string each time (*based on txt-string input)
     def hshr1(self, file_name, txt):
         arr = []
         arr2 = []
@@ -85,6 +123,7 @@ class App:
     # decrypt^^^^^^^^
     # def dh(self, filename):
     # REALLY COOL IF I CAN SOMEDAY FIGURE OUT HOW TO REVERSE THIS....MAYBE IT CAN OR CANT but the unique value returned each time can be used for stuff
+
 
 
     # create a list file
