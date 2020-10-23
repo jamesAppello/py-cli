@@ -10,7 +10,7 @@ INSTRUCTIONS TO USE::
 OPTION_LIST::
 * New File
 * Read File
-* File to CSV
+* Create CSV
 * (hshr1 == hash method that returns 9bit character string unique each time; the challenge is to make a method to decrypt it; if it can't be done, it's still pretty cool that it DOES return unique values each time.)
 * Create List 
 * Add to List

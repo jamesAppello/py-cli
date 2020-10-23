@@ -1,7 +1,7 @@
 
 class App:
     def __init__(self):
-        print("Select an option::\n1. New File\n2. Read File\n3. File-to-CSV\n\n*********EXPERIMENTAL*********\n4. hshr1\n**********\n\n5. Create List\n6. Add to List\n7. Read List")
+        print("Select an option::\n1. New File\n2. Read File\n3. Create-CSV\n\n*********EXPERIMENTAL*********\n4. hshr1\n**********\n\n5. Create List\n6. Add to List\n7. Read List")
         print("**type the method as you see it above**\n")
         user_select = input("<USER_SELECT>...")
 
@@ -13,14 +13,13 @@ class App:
             file_to_read = input('Specify the name of the file you want to read?')
             self.read_file(file_to_read)
 
+        # hidden method
         if user_select == "LD":
             self.list_dir('/list_files')
             self.list_dir('/txt_files')
 
-        # CSV to be added (**maybe have the method look in list files and convert to csv(title,descr,[...,points,..n.])
-        if user_select == 'File-to-CSV':
+        if user_select == 'Create-CSV':
             self.create_csv('csv_files')
-
 
         # method that returns a unique value each time
         if user_select == "hshr1":
@@ -60,9 +59,7 @@ class App:
             f.close()
             print(cntnt)
 
-    # file to csv
     # FOR F2CSV::
-    # ....- dotXLXS ->csv
     def create_csv(self,dirname):
         import csv as commaz
 
